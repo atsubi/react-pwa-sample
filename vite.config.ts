@@ -14,6 +14,7 @@ export default defineConfig({
         short_name: 'PWA',
         description: 'PWAサンプル',
         theme_color: '#ffffff',
+        display: 'standalone',
         icons: [
           {
             src: 'images/192_noa.png',
