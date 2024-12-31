@@ -9,6 +9,7 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['images/favicon.ico', 'images/apple-touch-icon-180x180.png'],
+      injectRegister: 'auto',
       manifest: {
         name: 'React PWA Sample',
         short_name: 'PWA',
@@ -17,27 +18,28 @@ export default defineConfig({
         display: 'standalone',
         icons: [
           {
-            "src": "images/pwa-64x64.png",
-            "sizes": "64x64",
-            "type": "image/png"
+            src: 'images/pwa-64x64.png',
+            sizes: '64x64',
+            type: 'image/png'
           },
           {
-            "src": "images/pwa-192x192.png",
-            "sizes": "192x192",
-            "type": "image/png"
+            src: 'images/pwa-192x192.png',
+            sizes: '192x192',
+            type: 'image/png'
           },
           {
-            "src": "images/pwa-512x512.png",
-            "sizes": "512x512",
-            "type": "image/png"
+            src: 'images/pwa-512x512.png',
+            sizes: '512x512',
+            type: 'image/png'
           },
           {
-            "src": "images/maskable-icon-512x512.png",
-            "sizes": "512x512",
-            "type": "image/png",
-            "purpose": "maskable"
+            src: 'images/maskable-icon-512x512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'maskable'
           }
        ]
       }
-    })],
+    })
+    ],
 })
