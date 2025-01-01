@@ -8,7 +8,12 @@ function App() {
 
   return (
     <>
-      <div>Hello World</div>
+      <div>
+        <form onSubmit={(e) => e.preventDefault()}>
+          <input type="text" value="" onChange={(e) => e.preventDefault()}/>
+          <input type="submit" value="編集" onSubmit={(e) => e.preventDefault()}/>
+        </form>
+      </div>
     </>
   );
 }
