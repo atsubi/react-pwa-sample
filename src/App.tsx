@@ -3,17 +3,49 @@ import { useState } from "react";
 // import viteLogo from "/vite.svg";
 import "./App.css";
 
+type Schedule = {
+  date: Date;
+  content: string;  
+};
+
 function App() {
   const [text, setText] = useState("ノア");
+  const [schecules, setSchedules] = useState<Schedule[]>([]);
+
+  const handleSubmit = () => {
+
+    // 入力されていない場合は何もしない
+    if (!text) return;
+
+    // 入力されている場合は、新しいスケジュールを登録
+    const newSchedule: Schedule = {
+      date: new Date(2025, 1, 10),
+      content: text
+    };
+
+    setSchedules((schecules) => [newSchedule, ...schecules]);
+
+    // フォームを更新
+    setText('');
+
+  }
 
   return (
     <>
       <div>
-        <form onSubmit={(e) => e.preventDefault()}>
+        <form onSubmit={(e) => {
+          e.preventDefault();
+          handleSubmit();
+        }}
+        >
           <input type="text" value={text} onChange={(e) => setText(e.target.value)}/>
-          <input type="submit" value="編集" onSubmit={(e) => e.preventDefault()}/>
+          <input type="submit" value="追加" onSubmit={handleSubmit}/>
         </form>
-        <p>{text}</p>
+        <ul>
+          {schecules.map((schecule) => {
+            return <li>{schecule.date.toLocaleDateString()} {schecule.content}</li>;
+          })}
+        </ul>
       </div>
     </>
   );
