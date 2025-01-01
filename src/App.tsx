@@ -4,13 +4,14 @@ import { useState } from "react";
 import "./App.css";
 
 type Schedule = {
+  readonly id: number;
   date: Date;
   content: string;  
 };
 
 function App() {
-  const [text, setText] = useState("");
-  const [date, setDate] = useState("");
+  const [text, setText] = useState<string>("");
+  const [date, setDate] = useState<string>("");
   const [schecules, setSchedules] = useState<Schedule[]>([]);
 
   const handleSubmit = () => {
@@ -20,6 +21,7 @@ function App() {
 
     // 入力されている場合は、新しいスケジュールを登録
     const newSchedule: Schedule = {
+      id: new Date().getTime(),
       date: new Date(date),
       content: text
     };
@@ -45,7 +47,7 @@ function App() {
         </form>
         <ul>
           {schecules.map((schecule) => {
-            return <li>{schecule.date.toLocaleDateString()} {schecule.content}</li>;
+            return <li key={schecule.id}>{schecule.date.toLocaleDateString()} {schecule.content}</li>;
           })}
         </ul>
       </div>
