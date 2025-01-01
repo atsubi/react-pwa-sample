@@ -16,11 +16,11 @@ function App() {
   const handleSubmit = () => {
 
     // 入力されていない場合は何もしない
-    if (!text) return;
+    if (!text || !date) return;
 
     // 入力されている場合は、新しいスケジュールを登録
     const newSchedule: Schedule = {
-      date: new Date(2025, 1, 10),
+      date: new Date(date),
       content: text
     };
 
