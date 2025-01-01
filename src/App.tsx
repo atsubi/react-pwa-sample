@@ -13,10 +13,8 @@ function App() {
           <input type="text" value={text} onChange={(e) => setText(e.target.value)}/>
           <input type="submit" value="編集" onSubmit={(e) => e.preventDefault()}/>
         </form>
+        <p>{text}</p>
       </div>
-
-      <p>{text}</p>
-
     </>
   );
 }
