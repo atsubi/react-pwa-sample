@@ -9,7 +9,8 @@ type Schedule = {
 };
 
 function App() {
-  const [text, setText] = useState("ノア");
+  const [text, setText] = useState("");
+  const [date, setDate] = useState("");
   const [schecules, setSchedules] = useState<Schedule[]>([]);
 
   const handleSubmit = () => {
@@ -38,6 +39,7 @@ function App() {
           handleSubmit();
         }}
         >
+          <input type="date" value={date} onChange={(e) => setDate(e.target.value)}/>
           <input type="text" value={text} onChange={(e) => setText(e.target.value)}/>
           <input type="submit" value="追加" onSubmit={handleSubmit}/>
         </form>
