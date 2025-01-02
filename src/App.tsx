@@ -14,7 +14,7 @@ function App() {
 
   useEffect(() => {
     navigator.mediaDevices.enumerateDevices().then((devices) => {
-        const cameraBackDevices = devices.filter(({label}) => label === "背面カメラ");
+        const cameraBackDevices = devices.filter(({label}) => label === "前面カメラ");
         setBackCamera(cameraBackDevices[0]);
       })
   });
