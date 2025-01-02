@@ -11,7 +11,7 @@ type Schedule = {
 
 function App() {
   const [text, setText] = useState<string>("");
-  const [date, setDate] = useState<string>("");
+  const [date, setDate] = useState<Date>(new Date());
   const [schecules, setSchedules] = useState<Schedule[]>([]);
 
   const handleSubmit = () => {
@@ -28,15 +28,13 @@ function App() {
 
     setSchedules((schecules) => [newSchedule, ...schecules]);
 
-    
-
     // フォームを更新 
     setText('');
-    setDate('');
+    setDate(new Date());
   };
 
 
-  const handleEditDate = (id: number, d: string) => {
+  const handleEditDate = (id: number, d: Date) => {
     setSchedules((schecules) => {
 
       const newSchedules = schecules.map((schecule) => {
@@ -90,7 +88,7 @@ function App() {
           handleSubmit();
         }}
         >
-          <input type="date" value={date} onChange={(e) => setDate(e.target.value)}/>
+          <input type="date" value={date.toLocaleDateString()} onChange={(e) => setDate(new Date(e.target.value))}/>
           <input type="text" value={text} onChange={(e) => setText(e.target.value)}/>
           <input type="submit" value="追加" onSubmit={handleSubmit}/>
         </form>
@@ -98,7 +96,7 @@ function App() {
           {schecules.map((schecule) => {
             return (
               <li key={schecule.id}>
-                <input type="date" value={schecule.date.toLocaleDateString()} onChange={(e) => handleEditDate(schecule.id, e.target.value)} />
+                <input type="date" value={schecule.date.toLocaleDateString()} onChange={(e) => handleEditDate(schecule.id, new Date(e.target.value))} />
                 <input type="text" value={schecule.content} onChange={(e) => handleEditContent(schecule.id, e.target.value)} />
               </li>
             );
