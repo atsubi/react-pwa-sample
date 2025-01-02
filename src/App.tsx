@@ -19,7 +19,7 @@ function App() {
         setCameras(cameraDevices);
 
         if (cameras?.length) {
-          setCamera(cameras[0]);
+          setCamera(cameras[1]);
         }
       })
   });
