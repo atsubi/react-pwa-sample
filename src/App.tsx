@@ -9,13 +9,13 @@ import "./App.css";
 };*/
 
 function App() {
-  const [cameras, setCameras] = useState<MediaDeviceInfo[]>([]);
+  const [backcamera, setBackCamera] = useState<MediaDeviceInfo>();
   const webcamRef = useRef<Webcam>(null);
 
   useEffect(() => {
     navigator.mediaDevices.enumerateDevices().then((devices) => {
-        const cameraDevices = devices.filter(({kind}) => kind === "videoinput");
-        setCameras(cameraDevices);
+        const cameraBackDevices = devices.filter(({label}) => label === "背面カメラ");
+        setBackCamera(cameraBackDevices[0]);
       })
   });
 
@@ -28,20 +28,16 @@ function App() {
 
   return (
     <>
-      <Webcam 
+      <Webcam
         audio={false}
-        height={720}
+        videoConstraints={{
+          width: 640,
+          height: 480,
+          deviceId: backcamera?.deviceId,
+        }}
         ref={webcamRef}
         screenshotFormat="image/jpeg"/>
       <button onClick={capture}>シャッター</button>
-
-      <li>
-        {cameras.map((camera) => {
-          return (
-            <ul>{camera.deviceId} {camera.label} {camera.kind}</ul>
-          )
-        })}
-      </li>
     </>
   )
 /*
