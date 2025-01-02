@@ -28,8 +28,14 @@ function App() {
 
     setSchedules((schecules) => [newSchedule, ...schecules]);
 
-    // フォームを更新
+    console.log('=== Original schedule ===');
+    schecules.map((schecule) => {
+      console.log(`id: ${schecule.id}, date: ${schecule.date}, content: ${schecule.content}`);
+    });
+
+    // フォームを更新 
     setText('');
+    setDate('');
   };
 
 
