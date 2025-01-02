@@ -47,7 +47,12 @@ function App() {
         </form>
         <ul>
           {schecules.map((schecule) => {
-            return <li key={schecule.id}>{schecule.date.toLocaleDateString()} {schecule.content}</li>;
+            return (
+              <li key={schecule.id}>
+                <input type="date" value={schecule.date.toLocaleDateString()} onChange={(e) => e.preventDefault()} />
+                <input type="text" value={schecule.content} onChange={(e) => e.preventDefault()} />
+              </li>
+            );
           })}
         </ul>
       </div>
