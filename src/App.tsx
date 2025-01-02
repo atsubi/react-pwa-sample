@@ -1,4 +1,4 @@
-import { useCallback, useRef, useEffect, useState } from "react";
+import { useCallback, useRef, useEffect, useState, SetStateAction } from "react";
 import Webcam from "react-webcam"
 import "./App.css";
 
@@ -12,12 +12,13 @@ function App() {
   const [cameras, setCameras] = useState<MediaDeviceInfo[]>();
   const [camera, setCamera] = useState<MediaDeviceInfo>();
   const webcamRef = useRef<Webcam>(null);
+  const [imgSrc, setImgSrc] = useState<string | null>("");
 
+  // 背面カメラを設定
   useEffect(() => {
     navigator.mediaDevices.enumerateDevices().then((devices) => {
         const cameraDevices = devices.filter(({kind}) => kind === "videoinput");
         setCameras(cameraDevices);
-
         if (cameras?.length) {
           setCamera(cameras[1]);
         }
@@ -27,7 +28,7 @@ function App() {
   const capture = useCallback(() => {
       if (webcamRef.current != null) {
         const imageSrc = webcamRef.current?.getScreenshot();
-        console.log(imageSrc);
+        setImgSrc(imageSrc);
       }
   }, [webcamRef]);
 
@@ -43,6 +44,9 @@ function App() {
         ref={webcamRef}
         screenshotFormat="image/jpeg"/>
       <button onClick={capture}>シャッター</button>
+      {imgSrc && (
+          <img src={imgSrc}/>
+      )}
     </>
   )
 /*
