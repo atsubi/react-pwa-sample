@@ -1,7 +1,5 @@
-// import { useState } from "react";
+import { useCallback, useRef, useEffect, useState } from "react";
 import Webcam from "react-webcam"
-// import reactLogo from "./assets/react.svg";
-// import viteLogo from "/vite.svg";
 import "./App.css";
 
 /*type Schedule = {
@@ -11,11 +9,39 @@ import "./App.css";
 };*/
 
 function App() {
+  const [cameras, setCameras] = useState<MediaDeviceInfo[]>([]);
+  const webcamRef = useRef<Webcam>(null);
 
+  useEffect(() => {
+    navigator.mediaDevices.enumerateDevices().then((devices) => {
+        const cameraDevices = devices.filter(({kind}) => kind === "videoinput");
+        setCameras(cameraDevices);
+      })
+  });
+
+  const capture = useCallback(() => {
+      if (webcamRef.current != null) {
+        const imageSrc = webcamRef.current?.getScreenshot();
+        console.log(imageSrc);
+      }
+  }, [webcamRef]);
 
   return (
     <>
-      <Webcam />
+      <Webcam 
+        audio={false}
+        height={720}
+        ref={webcamRef}
+        screenshotFormat="image/jpeg"/>
+      <button onClick={capture}>シャッター</button>
+
+      <li>
+        {cameras.map((camera) => {
+          return (
+            <ul>{camera.deviceId} {camera.label} {camera.kind}</ul>
+          )
+        })}
+      </li>
     </>
   )
 /*
