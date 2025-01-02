@@ -49,7 +49,7 @@ function App() {
 
       console.log('=== Original schedule ===');
       schecules.map((schecule) => {
-        console.log(`id: ${schecule.id}, date: ${schecule.date}, content: ${schecule.content}`);
+        console.log(`id: ${schecule.id}, date: ${schecule.date.toLocaleDateString()}, content: ${schecule.content}`);
       });
 
       return newSchedules;
@@ -72,7 +72,7 @@ function App() {
 
       console.log('=== Original schedule ===');
       schecules.map((schecule) => {
-        console.log(`id: ${schecule.id}, date: ${schecule.date}, content: ${schecule.content}`);
+        console.log(`id: ${schecule.id}, date: ${schecule.date.toLocaleDateString()}, content: ${schecule.content}`);
       });
 
       return newSchedules;
