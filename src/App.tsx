@@ -28,10 +28,7 @@ function App() {
 
     setSchedules((schecules) => [newSchedule, ...schecules]);
 
-    console.log('=== Original schedule ===');
-    schecules.map((schecule) => {
-      console.log(`id: ${schecule.id}, date: ${schecule.date}, content: ${schecule.content}`);
-    });
+    
 
     // フォームを更新 
     setText('');
@@ -51,6 +48,12 @@ function App() {
         }
         return schecule;
       });
+
+      console.log('=== Original schedule ===');
+      schecules.map((schecule) => {
+        console.log(`id: ${schecule.id}, date: ${schecule.date}, content: ${schecule.content}`);
+      });
+
       return newSchedules;
     });
   };
@@ -67,6 +70,11 @@ function App() {
           return copySchedule;
         }
         return schecule;
+      });
+
+      console.log('=== Original schedule ===');
+      schecules.map((schecule) => {
+        console.log(`id: ${schecule.id}, date: ${schecule.date}, content: ${schecule.content}`);
       });
 
       return newSchedules;
