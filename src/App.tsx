@@ -1,4 +1,4 @@
-import { useCallback, useRef, useEffect, useState, SetStateAction } from "react";
+import { useCallback, useRef, useEffect, useState } from "react";
 import Webcam from "react-webcam"
 import "./App.css";
 
