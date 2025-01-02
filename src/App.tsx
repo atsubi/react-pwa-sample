@@ -30,8 +30,43 @@ function App() {
 
     // フォームを更新
     setText('');
+  };
 
-  }
+
+  const handleEditDate = (id: number, d: string) => {
+    setSchedules((schecules) => {
+
+      const newSchedules = schecules.map((schecule) => {
+        if (schecule.id === id) {
+
+          const copySchedule = Object.assign({}, schecule);
+          copySchedule.date = new Date(d);
+          return copySchedule;
+        }
+        return schecule;
+      });
+      return newSchedules;
+    });
+  };
+
+
+  const handleEditContent = (id: number, ct: string) => {
+    setSchedules((schecules) => {
+
+      const newSchedules = schecules.map((schecule) => {
+        if (schecule.id === id) {
+
+          const copySchedule = Object.assign({}, schecule);
+          copySchedule.content = ct;
+          return copySchedule;
+        }
+        return schecule;
+      });
+
+      return newSchedules;
+    });
+  };
+
 
   return (
     <>
@@ -49,8 +84,8 @@ function App() {
           {schecules.map((schecule) => {
             return (
               <li key={schecule.id}>
-                <input type="date" value={schecule.date.toLocaleDateString()} onChange={(e) => e.preventDefault()} />
-                <input type="text" value={schecule.content} onChange={(e) => e.preventDefault()} />
+                <input type="date" value={schecule.date.toLocaleDateString()} onChange={(e) => handleEditDate(schecule.id, e.target.value)} />
+                <input type="text" value={schecule.content} onChange={(e) => handleEditContent(schecule.id, e.target.value)} />
               </li>
             );
           })}
