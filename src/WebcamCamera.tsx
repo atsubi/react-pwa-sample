@@ -3,6 +3,7 @@
  */
 import { useState, useRef, useCallback } from "react";
 import Webcam from "react-webcam";
+import { Camera } from "lucide-react";
 import { isMobile } from "react-device-detect";
 
 export default function WebcamCamera() {
@@ -38,11 +39,11 @@ export default function WebcamCamera() {
       <Webcam
         audio={false}
         videoConstraints={
-            (isMobile) ? { facingMode: {exact: "environment"}, aspectRatio: 1.333333333} : {facingMode: "user", aspectRatio: 0.666666666}}
+            (isMobile) ? { facingMode: {exact: "environment"}} : {facingMode: "user"} }
         ref={webcamRef}
         screenshotFormat="image/jpeg"
       />
-      <button onClick={capture}>シャッター</button>
+      <Camera onClick={capture}>シャッター</Camera>
       {imgSrc && <img src={imgSrc} />}
     </>
   );
