@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import {Camera, CameraType} from "react-camera-pro";
 
 export default function WebcamPro() {
