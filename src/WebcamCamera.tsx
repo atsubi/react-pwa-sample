@@ -37,7 +37,8 @@ export default function WebcamCamera() {
         videoConstraints={{
           width: 640,
           height: 480,
-          deviceId: camera?.deviceId,
+          facingMode: {exact: "environment"}
+          // deviceId: camera?.deviceId,
         }}
         ref={webcamRef}
         screenshotFormat="image/jpeg"
