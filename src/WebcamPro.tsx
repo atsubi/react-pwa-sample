@@ -22,7 +22,6 @@ export default function WebcamPro() {
     return (
         <div>
             <Camera ref={cameraProRef}
-                aspectRatio={16 / 9}
                 numberOfCamerasCallback={setCameras}
                 errorMessages={{
                 noCameraAccessible: undefined,
