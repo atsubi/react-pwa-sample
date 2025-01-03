@@ -1,19 +1,19 @@
 /**
  * React Webcamを使った撮影クラス
  */
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useCallback } from "react";
 import Webcam from "react-webcam";
 
 export default function WebcamCamera() {
 
-    const [cameras, setCameras] = useState<MediaDeviceInfo[]>();
+    //const [cameras, setCameras] = useState<MediaDeviceInfo[]>();
     //const [camera, setCamera] = useState<MediaDeviceInfo>();
 
     const webcamRef = useRef<Webcam>(null);
     const [imgSrc, setImgSrc] = useState<string | null>("");
 
   // 背面カメラを設定
-  useEffect(() => {
+  /*useEffect(() => {
     navigator.mediaDevices.enumerateDevices().then((devices) => {
       const cameraDevices = devices.filter(({ kind }) => kind === "videoinput");
       setCameras(cameraDevices);
@@ -21,7 +21,7 @@ export default function WebcamCamera() {
     //    setCamera(cameras[1]);
       }
     });
-  });
+  });*/
 
   const capture = useCallback(() => {
     if (webcamRef.current != null) {
@@ -45,13 +45,6 @@ export default function WebcamCamera() {
       />
       <button onClick={capture}>シャッター</button>
       {imgSrc && <img src={imgSrc} />}
-      <ul>
-        {cameras?.map((camera) => {
-            return ( 
-                <li>{camera?.kind} {camera?.label}</li> 
-            );
-        })}
-      </ul>
     </>
   );
 }
