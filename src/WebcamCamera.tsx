@@ -38,7 +38,7 @@ export default function WebcamCamera() {
       <Webcam
         audio={false}
         videoConstraints={
-            (isMobile) ? { facingMode: {exact: "environment"}, aspectRatio: 0.66666666} : {facingMode: "user", aspectRatio: 1.33333333}
+            (isMobile) ? { facingMode: {exact: "environment"}, aspectRatio: 0.66666666} : {facingMode: "user", aspectRatio: 1.33333333}}
         ref={webcamRef}
         screenshotFormat="image/jpeg"
       />
