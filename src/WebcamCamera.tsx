@@ -3,6 +3,7 @@
  */
 import { useState, useRef, useCallback } from "react";
 import Webcam from "react-webcam";
+import { isMobile } from "react-device-detect";
 
 export default function WebcamCamera() {
 
@@ -34,12 +35,7 @@ export default function WebcamCamera() {
     <>
       <Webcam
         audio={false}
-        videoConstraints={{
-          width: 640,
-          height: 480,
-          facingMode: {exact: "environment"}
-          // deviceId: camera?.deviceId,
-        }}
+        videoConstraints={(isMobile) ? { facingMode: {exact: "environment"} } : {facingMode: "user"}}
         ref={webcamRef}
         screenshotFormat="image/jpeg"
       />
