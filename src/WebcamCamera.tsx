@@ -27,7 +27,9 @@ export default function WebcamCamera() {
   const capture = useCallback(() => {
     if (webcamRef.current != null) {
       const imageSrc = webcamRef.current?.getScreenshot();
-      setImgSrc(imageSrc);
+      if (imageSrc) {
+        setImgSrc(imageSrc);
+      }
     }
   }, [webcamRef]);
 
@@ -35,7 +37,8 @@ export default function WebcamCamera() {
     <>
       <Webcam
         audio={false}
-        videoConstraints={(isMobile) ? { facingMode: {exact: "environment"} } : {facingMode: "user"}}
+        videoConstraints={
+            (isMobile) ? { facingMode: {exact: "environment"}, aspectRatio: 0.66666666} : {facingMode: "user", aspectRatio: 1.33333333}
         ref={webcamRef}
         screenshotFormat="image/jpeg"
       />
