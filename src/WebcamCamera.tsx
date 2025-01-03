@@ -7,7 +7,7 @@ import Webcam from "react-webcam";
 export default function WebcamCamera() {
 
     const [cameras, setCameras] = useState<MediaDeviceInfo[]>();
-    const [camera, setCamera] = useState<MediaDeviceInfo>();
+    //const [camera, setCamera] = useState<MediaDeviceInfo>();
 
     const webcamRef = useRef<Webcam>(null);
     const [imgSrc, setImgSrc] = useState<string | null>("");
@@ -18,7 +18,7 @@ export default function WebcamCamera() {
       const cameraDevices = devices.filter(({ kind }) => kind === "videoinput");
       setCameras(cameraDevices);
       if (cameras?.length) {
-        setCamera(cameras[1]);
+    //    setCamera(cameras[1]);
       }
     });
   });
