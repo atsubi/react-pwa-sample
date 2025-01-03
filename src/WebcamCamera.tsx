@@ -5,9 +5,10 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import Webcam from "react-webcam";
 
 export default function WebcamCamera() {
-    
+
     const [cameras, setCameras] = useState<MediaDeviceInfo[]>();
     const [camera, setCamera] = useState<MediaDeviceInfo>();
+
     const webcamRef = useRef<Webcam>(null);
     const [imgSrc, setImgSrc] = useState<string | null>("");
 
@@ -43,6 +44,13 @@ export default function WebcamCamera() {
       />
       <button onClick={capture}>シャッター</button>
       {imgSrc && <img src={imgSrc} />}
+      <ul>
+        {cameras?.map((camera) => {
+            return ( 
+                <li>{camera?.kind} {camera?.label}</li> 
+            );
+        })}
+      </ul>
     </>
   );
 }
