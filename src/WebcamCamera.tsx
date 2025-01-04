@@ -43,7 +43,7 @@ export default function WebcamCamera() {
         ref={webcamRef}
         screenshotFormat="image/jpeg"
       />
-      <Camera onClick={capture}>シャッター</Camera>
+      <Camera onClick={capture} className="absolute bottom-8 left-1/2 transform -translate-x-1/2 bg-white rounded-full p-4">シャッター</Camera>
       {imgSrc && <img src={imgSrc} />}
     </>
   );
