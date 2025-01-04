@@ -1,8 +1,11 @@
 import WebcamCamera from "./WebcamCamera.tsx";
 
-
 function App() {
-  return <WebcamCamera />;
+  return (
+    <div className="flex flex-col">
+      <WebcamCamera />
+    </div>
+  )
 }
 
 export default App;

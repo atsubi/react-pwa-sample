@@ -14,6 +14,8 @@ export default function WebcamCamera() {
     const webcamRef = useRef<Webcam>(null);
     const [imgSrc, setImgSrc] = useState<string | null>("");
 
+    const [showCamera, setShowCamera] = useState<boolean>(true);
+
   // 背面カメラを設定
   /*useEffect(() => {
     navigator.mediaDevices.enumerateDevices().then((devices) => {
@@ -31,20 +33,24 @@ export default function WebcamCamera() {
       if (imageSrc) {
         setImgSrc(imageSrc);
       }
+      setShowCamera(false);
     }
   }, [webcamRef]);
 
   return (
     <>
-      <Webcam
-        audio={false}
-        videoConstraints={
-            (isMobile) ? { facingMode: {exact: "environment"}} : {facingMode: "user"} }
-        ref={webcamRef}
-        screenshotFormat="image/jpeg"
-      />
-      <Camera onClick={capture} className="absolute bottom-8 left-1/2 transform -translate-x-1/2 bg-white rounded-full p-4">シャッター</Camera>
-      {imgSrc && <img src={imgSrc} />}
+        <main className="max-w-7xl">
+            {showCamera && (
+                <><Webcam
+                    audio={false}
+                    videoConstraints={(isMobile) ? { facingMode: { exact: "environment" } } : { facingMode: "user" }}
+                    ref={webcamRef}
+                    screenshotFormat="image/jpeg" />
+                <Camera onClick={capture} className="absolute bottom-8 left-1/2 transform -translate-x-1/2 bg-white rounded-full p-4">シャッター</Camera>
+                </> 
+            ) }
+            {imgSrc && <img src={imgSrc} />}
+        </main>
     </>
   );
 }
