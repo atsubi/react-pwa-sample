@@ -49,7 +49,9 @@ export const WebcamCamera: React.FC<CameraProps> = ({onCapture, onClose}) => {
         ref={webcamRef}
         screenshotFormat="image/jpeg" 
         className="w-full h-full object-cover"/>
-      <Camera onClick={capture} className="absolute bottom-8 left-1/2 transform -translate-x-1/2 bg-white rounded-full p-4"  size={32}/>
+      <button onClick={capture} className="absolute bottom-8 left-1/2 transform -translate-x-1/2 bg-white rounded-full p-4">
+        <Camera size={32}/>
+      </button>
     </div>
   );
 }
